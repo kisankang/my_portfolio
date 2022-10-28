@@ -4,7 +4,6 @@ import 'package:my_portfolio/common/theme/app_theme.dart';
 import 'package:my_portfolio/common/translations/localization_service.dart';
 import 'package:my_portfolio/data/services/theme_service.dart';
 import 'package:my_portfolio/routes/app_pages.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
