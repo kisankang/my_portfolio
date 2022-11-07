@@ -33,7 +33,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     theme: appThemeData,
     getPages: AppPages.pages,
-    initialRoute: Routes.intro,
+    initialRoute: Routes.main,
     initialBinding: BindingsBuilder(() {}),
     // builder:
     // // EasyLoading.init(
