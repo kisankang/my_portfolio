@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:my_portfolio/common/theme/app_theme.dart';
 import 'package:my_portfolio/common/translations/localization_service.dart';
+import 'package:my_portfolio/data/api/notion_api.dart';
+import 'package:my_portfolio/data/repositories/notion/inotion_repository.dart';
+import 'package:my_portfolio/data/repositories/notion/notion_repository.dart';
 import 'package:my_portfolio/data/services/theme_service.dart';
 import 'package:my_portfolio/routes/app_pages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: "assets/notion.env");
+
+  Get.lazyPut(() => NotionApi());
+  Get.put<INotionRepository>(NotionRepository(notionApi: Get.find()),
+      permanent: true);
+
   var getMaterialApp = GetMaterialApp(
     themeMode: ThemeService().getThemeMode(),
     localizationsDelegates: const [
@@ -33,16 +44,9 @@ void main() {
     debugShowCheckedModeBanner: false,
     theme: appThemeData,
     getPages: AppPages.pages,
-    initialRoute: Routes.intro,
+    initialRoute: Routes.main,
     initialBinding: BindingsBuilder(() {}),
-    // builder:
-    // // EasyLoading.init(
-    // //   builder: (context, child) => ScrollConfiguration(
-    // //     behavior: DisableGlowBehavior(),
-    // //     child: child!,
-    // //   ),
-    // )
-    // ,
+    builder: EasyLoading.init(),
   );
   runApp(getMaterialApp);
 }
