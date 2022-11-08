@@ -4,6 +4,6 @@ final ThemeData appThemeData = ThemeData.from(
   colorScheme: ColorScheme.lerp(
     ColorScheme.fromSeed(seedColor: Colors.red),
     ColorScheme.fromSeed(seedColor: Colors.blue),
-    0.95,
+    0.1,
   ),
 );
