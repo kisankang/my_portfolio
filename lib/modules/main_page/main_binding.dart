@@ -6,6 +6,6 @@ class MainBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(() => MainController());
-    Get.lazyPut(() => AbilityController(notionRepository: Get.find()));
+    Get.lazyPut(() => AbilityController(notionService: Get.find()));
   }
 }

@@ -7,6 +7,7 @@ import 'package:my_portfolio/common/translations/localization_service.dart';
 import 'package:my_portfolio/data/api/notion_api.dart';
 import 'package:my_portfolio/data/repositories/notion/inotion_repository.dart';
 import 'package:my_portfolio/data/repositories/notion/notion_repository.dart';
+import 'package:my_portfolio/data/services/notion_service.dart';
 import 'package:my_portfolio/data/services/theme_service.dart';
 import 'package:my_portfolio/routes/app_pages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,8 +16,14 @@ void main() async {
   await dotenv.load(fileName: "assets/notion.env");
 
   Get.lazyPut(() => NotionApi());
-  Get.put<INotionRepository>(NotionRepository(notionApi: Get.find()),
-      permanent: true);
+  Get.put<INotionRepository>(
+    NotionRepository(notionApi: Get.find()),
+    permanent: true,
+  );
+  Get.put<NotionService>(
+    NotionService(notionRepository: Get.find()),
+    permanent: true,
+  );
 
   var getMaterialApp = GetMaterialApp(
     themeMode: ThemeService().getThemeMode(),
